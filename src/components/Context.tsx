@@ -2,7 +2,17 @@
 import React, { ReactNode } from "react";
 import CalendarGenerate, { CalendarType } from "./CalendarGenerate";
 
-export const CalendarContext = React.createContext<CalendarType | null>(null);
+type CalendarContextType = {
+  calendar: CalendarType | null;
+  currentMonth: number | null;
+  setCurrentMonth: React.Dispatch<React.SetStateAction<number | null>>;
+  checked: string;
+  setChecked: React.Dispatch<React.SetStateAction<string>>;
+};
+
+export const CalendarContext = React.createContext<CalendarContextType | null>(
+  null
+);
 
 const feriadosSpain2025 = [
   "2025-01-01",
@@ -20,6 +30,8 @@ const feriadosSpain2025 = [
 
 export const CalendarProvider = ({ children }: { children: ReactNode }) => {
   const [calendar, setCalendar] = React.useState<CalendarType | null>(null);
+  const [currentMonth, setCurrentMonth] = React.useState<number | null>(null);
+  const [checked, setChecked] = React.useState("morning");
 
   React.useEffect(() => {
     const actualCalendar = CalendarGenerate(
@@ -29,7 +41,9 @@ export const CalendarProvider = ({ children }: { children: ReactNode }) => {
     setCalendar(actualCalendar);
   }, []);
   return (
-    <CalendarContext.Provider value={calendar}>
+    <CalendarContext.Provider
+      value={{ calendar, currentMonth, setCurrentMonth, checked, setChecked }}
+    >
       {children}
     </CalendarContext.Provider>
   );

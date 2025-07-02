@@ -27,7 +27,7 @@ export default function RootLayout({
     <html lang="en">
       <CalendarProvider>
         <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased m-5`}
+          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
           {children}
         </body>
