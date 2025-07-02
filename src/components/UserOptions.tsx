@@ -3,9 +3,10 @@ import React from "react";
 import Options from "./Options";
 import addSvg from "../../public/add.svg";
 import Image from "next/image";
+import { CalendarContext } from "./Context";
 
 const UserOptions = () => {
-  const [rotated, setRotated] = React.useState(false);
+  const { rotated, setRotated } = React.useContext(CalendarContext);
 
   return (
     <div className="font-bold fixed bottom-8 left-0 w-full p-4">

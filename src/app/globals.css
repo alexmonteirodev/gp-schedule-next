@@ -13,3 +13,6 @@
   --color-base-900: #101828;
   --color-base-950: #030712;
 }
+:root {
+  --numberColor: var(--color-base-900);
+}

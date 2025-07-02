@@ -8,6 +8,8 @@ type CalendarContextType = {
   setCurrentMonth: React.Dispatch<React.SetStateAction<number | null>>;
   checked: string;
   setChecked: React.Dispatch<React.SetStateAction<string>>;
+  rotated: boolean;
+  setRotated: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export const CalendarContext = React.createContext<CalendarContextType | null>(
@@ -32,6 +34,7 @@ export const CalendarProvider = ({ children }: { children: ReactNode }) => {
   const [calendar, setCalendar] = React.useState<CalendarType | null>(null);
   const [currentMonth, setCurrentMonth] = React.useState<number | null>(null);
   const [checked, setChecked] = React.useState("morning");
+  const [rotated, setRotated] = React.useState(false);
 
   React.useEffect(() => {
     const actualCalendar = CalendarGenerate(
@@ -42,7 +45,15 @@ export const CalendarProvider = ({ children }: { children: ReactNode }) => {
   }, []);
   return (
     <CalendarContext.Provider
-      value={{ calendar, currentMonth, setCurrentMonth, checked, setChecked }}
+      value={{
+        calendar,
+        currentMonth,
+        setCurrentMonth,
+        checked,
+        setChecked,
+        rotated,
+        setRotated,
+      }}
     >
       {children}
     </CalendarContext.Provider>

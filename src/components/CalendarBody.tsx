@@ -4,11 +4,53 @@ import { CalendarContext } from "./Context";
 import Label from "./Label";
 
 const CalendarBody = () => {
-  const { calendar, currentMonth, setCurrentMonth } =
+  const { calendar, currentMonth, setCurrentMonth, rotated, checked } =
     useContext(CalendarContext);
   const containerRef = useRef<HTMLDivElement>(null);
   const monthRefs = useRef<(HTMLDivElement | null)[]>([]);
   const observer = useRef<IntersectionObserver | null>(null);
+
+  const periodOptions = {
+    morning: {
+      color: "#FDC800",
+      label: "morning",
+    },
+    afternoon: {
+      color: "#00C950",
+      label: "afternoon",
+    },
+    night: {
+      color: "#165DFB",
+      label: "night",
+    },
+  };
+  console.log(calendar);
+
+  function handleEdit(e: React.TouchEvent<HTMLDivElement>) {
+    const el = e.currentTarget;
+    const period: PeriodType = periodOptions[checked];
+
+    if (!period) return;
+
+    const alreadySelected = el.innerText === period.label;
+
+    //toggle
+    if (alreadySelected && rotated === true) {
+      el.innerText = "";
+      el.style.backgroundColor = "";
+      el.style.color = "";
+      el.style.borderRadius = "";
+      el.style.fontSize = "";
+      el.style.padding = "";
+    } else if (rotated === true) {
+      el.innerText = period.label;
+      el.style.backgroundColor = period.color;
+      el.style.color = "var(--numberColor)";
+      el.style.borderRadius = "9999px";
+      el.style.fontSize = "0.5rem";
+      el.style.padding = "2px 4px";
+    }
+  }
 
   // Observa qual mês está visível
   useEffect(() => {
@@ -63,7 +105,22 @@ const CalendarBody = () => {
                     day?.isHoliday ? "border-t-2 border-purple-600" : ""
                   } ${i % 7 === 5 || i % 7 === 6 ? "text-base-400" : ""}`}
                 >
-                  {day ? day.number : ""}
+                  {day ? (
+                    <div>
+                      <div>{day.number}</div>
+                      <div
+                        onTouchStart={handleEdit}
+                        id={day.id}
+                        className={`${
+                          rotated
+                            ? "border-[1px] border-base-300 rounded-2xl text-[0.5rem] mx-0.5 h-4"
+                            : "mx-0.5"
+                        }`}
+                      ></div>
+                    </div>
+                  ) : (
+                    ""
+                  )}
                 </div>
               ))}
             </div>
