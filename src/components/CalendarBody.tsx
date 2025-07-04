@@ -14,14 +14,17 @@ const CalendarBody = () => {
     morning: {
       color: "#FDC800",
       label: "morning",
+      textColor: "var(--color-base-900)",
     },
     afternoon: {
       color: "#00C950",
       label: "afternoon",
+      textColor: "var(--color-base-100)",
     },
     night: {
       color: "#165DFB",
       label: "night",
+      textColor: "var(--color-base-100)",
     },
   };
   console.log(calendar);
@@ -45,8 +48,8 @@ const CalendarBody = () => {
     } else if (rotated === true) {
       el.innerText = period.label;
       el.style.backgroundColor = period.color;
-      el.style.color = "var(--numberColor)";
-      el.style.borderRadius = "9999px";
+      el.style.color = period.textColor;
+      el.style.borderRadius = "0.2rem";
       el.style.fontSize = "0.5rem";
       el.style.padding = "2px 4px";
     }
@@ -113,7 +116,7 @@ const CalendarBody = () => {
                         id={day.id}
                         className={`${
                           rotated
-                            ? "border-[1px] border-base-300 rounded-2xl text-[0.5rem] mx-0.5 h-4"
+                            ? "border-[1px] border-base-300 rounded-[0.2rem] text-[0.5rem] mx-0.5 h-4"
                             : "mx-0.5"
                         }`}
                       ></div>

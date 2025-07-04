@@ -15,4 +15,6 @@
 }
 :root {
   --numberColor: var(--color-base-900);
+  --textWhiteColor: var(--color-base-100);
+  --textBlackColor: var(--color-base-900);
 }
