@@ -1,7 +1,6 @@
 "use client";
 import React from "react";
 import { useCalendarContext } from "./Context";
-// import HoursCount from "./HoursCount";
 const Header = () => {
   const { calendar, currentMonth, hours, totals } = useCalendarContext();
   console.log("hours", hours);
