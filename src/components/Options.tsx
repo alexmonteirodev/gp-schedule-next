@@ -2,10 +2,10 @@ import React from "react";
 import Image from "next/image";
 import settings from "../../public/settings.svg";
 import { useRouter } from "next/navigation";
-import { CalendarContext } from "./Context";
+import { useCalendarContext } from "./Context";
 
 const Options = () => {
-  const { checked, setChecked, options } = React.useContext(CalendarContext);
+  const { checked, setChecked, options } = useCalendarContext();
 
   console.log(options);
 
@@ -13,7 +13,7 @@ const Options = () => {
 
   return (
     <div className="flex justify-center items-center gap-5">
-      <div className="flex justify-center items-center gap-5 overflow-x-scroll snap-x snap-mandatory scrollbar-hide pl-25">
+      <div className="flex justify-center items-center gap-5 overflow-x-scroll snap-x snap-mandatory scrollbar-hide pl-25 hide-scrollbar">
         {options.map((option) => (
           <div key={option.id} onTouchStart={() => setChecked(option.id)}>
             <div

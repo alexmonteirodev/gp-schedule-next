@@ -1,16 +1,17 @@
 "use client";
 import React, { useContext, useEffect, useRef } from "react";
-import { CalendarContext } from "./Context";
+import { useCalendarContext } from "./Context";
 import Label from "./Label";
 
 const CalendarBody = () => {
   const { calendar, currentMonth, setCurrentMonth, rotated, checked, options } =
-    useContext(CalendarContext);
+    useCalendarContext();
   const containerRef = useRef<HTMLDivElement>(null);
   const monthRefs = useRef<(HTMLDivElement | null)[]>([]);
   const observer = useRef<IntersectionObserver | null>(null);
 
   console.log(calendar);
+  console.log(currentMonth);
 
   function handleEdit(e: React.TouchEvent<HTMLDivElement>) {
     const el = e.currentTarget;
@@ -75,7 +76,7 @@ const CalendarBody = () => {
       <Label />
       <div
         ref={containerRef}
-        className="overflow-y-scroll snap-y snap-mandatory h-screen scrollbar-hide"
+        className="overflow-y-scroll snap-y snap-mandatory h-screen scrollbar-hide hide-scrollbar"
       >
         {calendar?.months.map((month, index) => (
           <div

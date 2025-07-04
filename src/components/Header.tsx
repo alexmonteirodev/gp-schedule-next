@@ -1,8 +1,8 @@
 "use client";
 import React from "react";
-import { CalendarContext } from "./Context";
+import { useCalendarContext } from "./Context";
 const Header = () => {
-  const { calendar, currentMonth } = React.useContext(CalendarContext);
+  const { calendar, currentMonth } = useCalendarContext();
 
   const monthNames = [
     "January",

@@ -13,11 +13,17 @@ type CalendarContextType = {
   setRotated: React.Dispatch<React.SetStateAction<boolean>>;
   options: PeriodOptionType[];
   setOptions: React.Dispatch<React.SetStateAction<PeriodOptionType[]>>;
+  hours: number[];
+  setHours: React.Dispatch<React.SetStateAction<number[]>>;
 };
 
-export const CalendarContext = React.createContext<CalendarContextType | null>(
-  null
-);
+const CalendarContext = React.createContext<CalendarContextType | null>(null);
+
+export const useCalendarContext = () => {
+  const context = React.useContext(CalendarContext);
+  if (context === null) throw new Error("Provider não encontrado");
+  return context;
+};
 
 const feriadosSpain2025 = [
   "2025-01-01",
@@ -40,6 +46,7 @@ export const CalendarProvider = ({ children }: { children: ReactNode }) => {
   const [rotated, setRotated] = React.useState(false);
   const [options, setOptions] =
     React.useState<PeriodOptionType[]>(defaultOptions);
+  const [hours, setHours] = React.useState<number[]>(new Array(12).fill(0));
 
   React.useEffect(() => {
     const actualCalendar = CalendarGenerate(
@@ -60,6 +67,8 @@ export const CalendarProvider = ({ children }: { children: ReactNode }) => {
         setRotated,
         options,
         setOptions,
+        hours,
+        setHours,
       }}
     >
       {children}
