@@ -2,7 +2,10 @@
 import React, { ReactNode } from "react";
 import CalendarGenerate, { CalendarType } from "./CalendarGenerate";
 import { defaultOptions, PeriodOptionType } from "@/components/PeriodOptions";
-
+type HourEntry = {
+  dayId: string;
+  period: string;
+};
 type CalendarContextType = {
   calendar: CalendarType | null;
   currentMonth: number | null;
@@ -13,8 +16,8 @@ type CalendarContextType = {
   setRotated: React.Dispatch<React.SetStateAction<boolean>>;
   options: PeriodOptionType[];
   setOptions: React.Dispatch<React.SetStateAction<PeriodOptionType[]>>;
-  hours: string[][];
-  setHours: React.Dispatch<React.SetStateAction<string[][]>>;
+  hours: HourEntry[][];
+  setHours: React.Dispatch<React.SetStateAction<HourEntry[][]>>;
   totals: number[];
   setTotals: React.Dispatch<React.SetStateAction<number[]>>;
 };
@@ -48,7 +51,7 @@ export const CalendarProvider = ({ children }: { children: ReactNode }) => {
   const [rotated, setRotated] = React.useState(false);
   const [options, setOptions] =
     React.useState<PeriodOptionType[]>(defaultOptions);
-  const [hours, setHours] = React.useState<string[][]>(
+  const [hours, setHours] = React.useState<HourEntry[][]>(
     Array.from({ length: 12 }, () => [])
   );
   const [totals, setTotals] = React.useState<number[]>(new Array(12).fill(0));
