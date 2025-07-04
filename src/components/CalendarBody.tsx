@@ -110,7 +110,9 @@ const CalendarBody = () => {
         {calendar?.months.map((month, index) => (
           <div
             key={month.month}
-            ref={(el) => (monthRefs.current[index] = el)}
+            ref={(el) => {
+              monthRefs.current[index] = el;
+            }}
             className="mb-8 snap-center min-h-screen"
           >
             <div className="grid grid-cols-7">
