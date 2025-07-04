@@ -9,7 +9,7 @@ const UserOptions = () => {
   const { rotated, setRotated } = React.useContext(CalendarContext);
 
   return (
-    <div className="font-bold fixed bottom-8 left-0 w-full p-4">
+    <div className="font-bold fixed bottom-0 left-0 w-full p-4">
       <div className="flex justify-end mb-5">
         <button
           onTouchStart={() => setRotated(!rotated)}

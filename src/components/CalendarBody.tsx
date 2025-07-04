@@ -4,48 +4,31 @@ import { CalendarContext } from "./Context";
 import Label from "./Label";
 
 const CalendarBody = () => {
-  const { calendar, currentMonth, setCurrentMonth, rotated, checked } =
+  const { calendar, currentMonth, setCurrentMonth, rotated, checked, options } =
     useContext(CalendarContext);
   const containerRef = useRef<HTMLDivElement>(null);
   const monthRefs = useRef<(HTMLDivElement | null)[]>([]);
   const observer = useRef<IntersectionObserver | null>(null);
 
-  const periodOptions = {
-    morning: {
-      color: "#FDC800",
-      label: "morning",
-      textColor: "var(--color-base-900)",
-    },
-    afternoon: {
-      color: "#00C950",
-      label: "afternoon",
-      textColor: "var(--color-base-100)",
-    },
-    night: {
-      color: "#165DFB",
-      label: "night",
-      textColor: "var(--color-base-100)",
-    },
-  };
   console.log(calendar);
 
   function handleEdit(e: React.TouchEvent<HTMLDivElement>) {
     const el = e.currentTarget;
-    const period: PeriodType = periodOptions[checked];
+    const period = options.find((opt) => opt.id === checked);
 
     if (!period) return;
 
     const alreadySelected = el.innerText === period.label;
 
     //toggle
-    if (alreadySelected && rotated === true) {
+    if (alreadySelected && rotated) {
       el.innerText = "";
       el.style.backgroundColor = "";
       el.style.color = "";
       el.style.borderRadius = "";
       el.style.fontSize = "";
       el.style.padding = "";
-    } else if (rotated === true) {
+    } else if (rotated) {
       el.innerText = period.label;
       el.style.backgroundColor = period.color;
       el.style.color = period.textColor;
@@ -116,7 +99,7 @@ const CalendarBody = () => {
                         id={day.id}
                         className={`${
                           rotated
-                            ? "border-[1px] border-base-300 rounded-[0.2rem] text-[0.5rem] mx-0.5 h-4"
+                            ? "border-[1px] border-base-300 rounded-[0.2rem] text-[0.5rem] mx-0.5 h-4 text-center flex items-center justify-center"
                             : "mx-0.5"
                         }`}
                       ></div>

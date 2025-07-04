@@ -1,6 +1,7 @@
 "use client";
 import React, { ReactNode } from "react";
 import CalendarGenerate, { CalendarType } from "./CalendarGenerate";
+import { defaultOptions, PeriodOptionType } from "@/components/PeriodOptions";
 
 type CalendarContextType = {
   calendar: CalendarType | null;
@@ -10,6 +11,8 @@ type CalendarContextType = {
   setChecked: React.Dispatch<React.SetStateAction<string>>;
   rotated: boolean;
   setRotated: React.Dispatch<React.SetStateAction<boolean>>;
+  options: PeriodOptionType[];
+  setOptions: React.Dispatch<React.SetStateAction<PeriodOptionType[]>>;
 };
 
 export const CalendarContext = React.createContext<CalendarContextType | null>(
@@ -35,6 +38,8 @@ export const CalendarProvider = ({ children }: { children: ReactNode }) => {
   const [currentMonth, setCurrentMonth] = React.useState<number | null>(null);
   const [checked, setChecked] = React.useState("morning");
   const [rotated, setRotated] = React.useState(false);
+  const [options, setOptions] =
+    React.useState<PeriodOptionType[]>(defaultOptions);
 
   React.useEffect(() => {
     const actualCalendar = CalendarGenerate(
@@ -53,6 +58,8 @@ export const CalendarProvider = ({ children }: { children: ReactNode }) => {
         setChecked,
         rotated,
         setRotated,
+        options,
+        setOptions,
       }}
     >
       {children}
