@@ -7,13 +7,11 @@ import { useCalendarContext } from "./Context";
 const Options = () => {
   const { checked, setChecked, options } = useCalendarContext();
 
-  console.log(options);
-
   const router = useRouter();
 
   return (
     <div className="flex justify-center items-center gap-5">
-      <div className="flex justify-center items-center gap-5 overflow-x-scroll snap-x snap-mandatory scrollbar-hide pl-25 hide-scrollbar">
+      <div className="flex justify-center items-center gap-5 overflow-x-scroll snap-x snap-mandatory scrollbar-hide hide-scrollbar">
         {options.map((option) => (
           <div key={option.id} onTouchStart={() => setChecked(option.id)}>
             <div

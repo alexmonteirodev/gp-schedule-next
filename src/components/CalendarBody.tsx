@@ -1,46 +1,75 @@
 "use client";
-import React, { useContext, useEffect, useRef } from "react";
+import React from "react";
 import { useCalendarContext } from "./Context";
 import Label from "./Label";
 
 const CalendarBody = () => {
-  const { calendar, currentMonth, setCurrentMonth, rotated, checked, options } =
-    useCalendarContext();
-  const containerRef = useRef<HTMLDivElement>(null);
-  const monthRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const observer = useRef<IntersectionObserver | null>(null);
-
-  console.log(calendar);
-  console.log(currentMonth);
+  const {
+    calendar,
+    currentMonth,
+    setCurrentMonth,
+    rotated,
+    checked,
+    options,
+    setHours,
+  } = useCalendarContext();
+  const containerRef = React.useRef<HTMLDivElement>(null);
+  const monthRefs = React.useRef<(HTMLDivElement | null)[]>([]);
+  const observer = React.useRef<IntersectionObserver | null>(null);
 
   function handleEdit(e: React.TouchEvent<HTMLDivElement>) {
     const el = e.currentTarget;
     const period = options.find((opt) => opt.id === checked);
+    if (!period || !currentMonth) return;
 
-    if (!period) return;
+    const dayId = el.id;
+    const newLabel = period.label;
 
-    const alreadySelected = el.innerText === period.label;
+    setHours((prevHours) => {
+      const newHours = prevHours.map((monthArr) => [...monthArr]);
+      const monthIndex = currentMonth - 1;
 
-    //toggle
-    if (alreadySelected && rotated) {
-      el.innerText = "";
-      el.style.backgroundColor = "";
-      el.style.color = "";
-      el.style.borderRadius = "";
-      el.style.fontSize = "";
-      el.style.padding = "";
-    } else if (rotated) {
-      el.innerText = period.label;
-      el.style.backgroundColor = period.color;
-      el.style.color = period.textColor;
-      el.style.borderRadius = "0.2rem";
-      el.style.fontSize = "0.5rem";
-      el.style.padding = "2px 4px";
-    }
+      const existingIndex = newHours[monthIndex].findIndex(
+        (entry) => entry.dayId === dayId
+      );
+
+      const isSamePeriod =
+        existingIndex !== -1 &&
+        newHours[monthIndex][existingIndex].period === newLabel;
+
+      // Se o mesmo período já estiver setado: desmarca
+      if (isSamePeriod && rotated) {
+        el.innerText = "";
+        el.style.backgroundColor = "";
+        el.style.color = "";
+        el.style.borderRadius = "";
+        el.style.fontSize = "";
+        el.style.padding = "";
+
+        //hours remove
+        newHours[monthIndex].splice(existingIndex, 1);
+      } else if (rotated) {
+        el.innerText = newLabel;
+        el.style.backgroundColor = period.color;
+        el.style.color = period.textColor;
+        el.style.borderRadius = "0.2rem";
+        el.style.fontSize = "0.5rem";
+        el.style.padding = "2px 4px";
+
+        //hours add
+        if (existingIndex !== -1) {
+          newHours[monthIndex].splice(existingIndex, 1); // Remove antigo
+        }
+
+        newHours[monthIndex].push({ dayId, period: newLabel }); // Adiciona novo
+      }
+
+      return newHours;
+    });
   }
 
   // Observa qual mês está visível
-  useEffect(() => {
+  React.useEffect(() => {
     if (!calendar || !setCurrentMonth) return;
 
     observer.current = new IntersectionObserver(

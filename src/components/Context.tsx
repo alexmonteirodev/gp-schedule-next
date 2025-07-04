@@ -13,8 +13,10 @@ type CalendarContextType = {
   setRotated: React.Dispatch<React.SetStateAction<boolean>>;
   options: PeriodOptionType[];
   setOptions: React.Dispatch<React.SetStateAction<PeriodOptionType[]>>;
-  hours: number[];
-  setHours: React.Dispatch<React.SetStateAction<number[]>>;
+  hours: string[][];
+  setHours: React.Dispatch<React.SetStateAction<string[][]>>;
+  totals: number[];
+  setTotals: React.Dispatch<React.SetStateAction<number[]>>;
 };
 
 const CalendarContext = React.createContext<CalendarContextType | null>(null);
@@ -26,17 +28,17 @@ export const useCalendarContext = () => {
 };
 
 const feriadosSpain2025 = [
-  "2025-01-01",
-  "2025-01-06",
+  "2024-12-31",
+  "2025-01-05",
+  "2025-04-16",
   "2025-04-17",
-  "2025-04-18",
-  "2025-05-01",
-  "2025-08-15",
-  "2025-10-12",
-  "2025-11-01",
-  "2025-12-06",
-  "2025-12-08",
-  "2025-12-25",
+  "2025-04-30",
+  "2025-08-14",
+  "2025-10-11",
+  "2025-10-31",
+  "2025-12-05",
+  "2025-12-07",
+  "2025-12-24",
 ];
 
 export const CalendarProvider = ({ children }: { children: ReactNode }) => {
@@ -46,7 +48,10 @@ export const CalendarProvider = ({ children }: { children: ReactNode }) => {
   const [rotated, setRotated] = React.useState(false);
   const [options, setOptions] =
     React.useState<PeriodOptionType[]>(defaultOptions);
-  const [hours, setHours] = React.useState<number[]>(new Array(12).fill(0));
+  const [hours, setHours] = React.useState<string[][]>(
+    Array.from({ length: 12 }, () => [])
+  );
+  const [totals, setTotals] = React.useState<number[]>(new Array(12).fill(0));
 
   React.useEffect(() => {
     const actualCalendar = CalendarGenerate(
@@ -69,6 +74,8 @@ export const CalendarProvider = ({ children }: { children: ReactNode }) => {
         setOptions,
         hours,
         setHours,
+        totals,
+        setTotals,
       }}
     >
       {children}
