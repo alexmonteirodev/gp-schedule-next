@@ -10,7 +10,7 @@ const UserOptions = () => {
 
   return (
     <div
-      className={`font-bold fixed bottom-0 left-0 w-full p-4 pointer-events-none`}
+      className={`font-bold fixed bottom-0 left-0 w-full px-4 py-2.5 pointer-events-none`}
     >
       <div className="flex justify-end mb-2">
         <button
@@ -23,7 +23,7 @@ const UserOptions = () => {
         </button>
       </div>
       <div
-        className="bg-base-100 rounded-lg transition-transform duration-300 py-5 px-2"
+        className="bg-base-100 rounded-md transition-transform duration-300 py-3 px-2"
         style={{
           transform: rotated === false ? "translateY(300%)" : "translateY(0)",
         }}
