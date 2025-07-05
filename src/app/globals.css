@@ -19,6 +19,12 @@
   --textBlackColor: var(--color-base-900);
 }
 
+.dark-theme {
+  --numberColor: var(--color-base-100);
+  --textWhiteColor: var(--color-base-900);
+  --textBlackColor: var(--color-base-100);
+}
+
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
 }
