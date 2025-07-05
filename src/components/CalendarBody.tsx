@@ -113,7 +113,7 @@ const CalendarBody = () => {
             ref={(el) => {
               monthRefs.current[index] = el;
             }}
-            className="mb-8 snap-center min-h-screen"
+            className={`mb-8 min-h-screen snap-center`}
           >
             <div className="grid grid-cols-7">
               {month.days.map((day, i) => (

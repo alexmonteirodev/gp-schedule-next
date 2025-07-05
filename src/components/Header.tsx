@@ -2,9 +2,7 @@
 import React from "react";
 import { useCalendarContext } from "./Context";
 const Header = () => {
-  const { calendar, currentMonth, hours, totals } = useCalendarContext();
-  console.log("hours", hours);
-  console.log("totals", totals);
+  const { calendar, currentMonth, totals } = useCalendarContext();
 
   if (!currentMonth) return;
 
@@ -24,7 +22,7 @@ const Header = () => {
   ];
 
   return (
-    <div className="mt-10 mb-5">
+    <div className="mt-5 mb-5">
       <p className="text-base-400 text-[0.8rem] font-bold">
         {calendar ? calendar.year : "Year"}
       </p>
@@ -33,10 +31,7 @@ const Header = () => {
           <h1 className="font-bold text-3xl">{monthNames[currentMonth - 1]}</h1>
         </div>
         <div className="text-base-400 font-medium">
-          Total:{" "}
-          <span className="italic">
-            {/* {hours[currentMonth] > 0 ? hours[currentMonth] : "0"} hrs */}
-          </span>
+          Total: <span className="italic">{totals[currentMonth - 1]} hrs</span>
         </div>
       </div>
     </div>

@@ -63,6 +63,22 @@ export const CalendarProvider = ({ children }: { children: ReactNode }) => {
     );
     setCalendar(actualCalendar);
   }, []);
+
+  //HoursCount
+  React.useEffect(() => {
+    const newTotals = hours.map((monthEntries) => {
+      return monthEntries.reduce((total, entry) => {
+        const option = defaultOptions.find((opt) => opt.label === entry.period);
+        return option ? total + option.hours : total;
+      }, 0);
+    });
+
+    // console.log("HORAS:", hours);
+    // console.log("TOTALS:", newTotals);
+
+    setTotals(newTotals);
+  }, [hours]);
+
   return (
     <CalendarContext.Provider
       value={{
