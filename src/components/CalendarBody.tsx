@@ -56,7 +56,7 @@ const CalendarBody = () => {
         el.style.backgroundColor = period.color;
         el.style.color = period.textColor;
         el.style.borderRadius = "0.2rem";
-        el.style.fontSize = "0.5rem";
+        el.style.fontSize = "0.575rem";
         el.style.padding = "2px 4px";
 
         //hours add
@@ -116,7 +116,7 @@ const CalendarBody = () => {
             el.style.backgroundColor = opt.color;
             el.style.color = opt.textColor;
             el.style.borderRadius = "0.2rem";
-            el.style.fontSize = "0.5rem";
+            el.style.fontSize = "0.575rem";
             el.style.padding = "2px 4px";
           }
         });
@@ -192,7 +192,7 @@ const CalendarBody = () => {
                         id={day.id}
                         className={`${
                           rotated
-                            ? "border-[1px] border-base-300 rounded-[0.2rem]  mx-0.5 h-5 text-center flex items-center justify-center mt-1 transition-transform duration-100 active:scale-120 active:translate-z-3"
+                            ? "border-[1px] border-base-300 rounded-[0.2rem]  mx-0.5 h-5 text-center flex items-center justify-center mt-1 transition-transform duration-150 active:scale-120 active:translate-z-3"
                             : "mx-0.5 mt-1 flex items-center justify-center h-5"
                         }`}
                       ></div>
