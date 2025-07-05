@@ -193,7 +193,7 @@ const CalendarBody = () => {
                         className={`${
                           rotated
                             ? "border-[1px] border-base-300 rounded-[0.2rem] text-[0.5rem] mx-0.5 h-4 text-center flex items-center justify-center mt-1"
-                            : "mx-0.5 mt-1"
+                            : "mx-0.5 mt-1 flex items-center justify-center"
                         }`}
                       ></div>
                     </div>

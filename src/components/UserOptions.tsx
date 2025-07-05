@@ -9,11 +9,13 @@ const UserOptions = () => {
   const { rotated, setRotated } = useCalendarContext();
 
   return (
-    <div className="font-bold fixed bottom-0 left-0 w-full p-4">
-      <div className="flex justify-end mb-5">
+    <div
+      className={`font-bold fixed bottom-0 left-0 w-full p-4 pointer-events-none`}
+    >
+      <div className="flex justify-end mb-2">
         <button
           onTouchStart={() => setRotated(!rotated)}
-          className={`rounded-full bg-base-200 p-2 transition-transform duration-300 ${
+          className={`rounded-full bg-base-200 p-2 transition-transform duration-300 pointer-events-auto ${
             rotated ? "rotate-135" : "rotate-0"
           }`}
         >

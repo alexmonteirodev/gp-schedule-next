@@ -11,7 +11,7 @@ const Options = () => {
 
   return (
     <div className="flex justify-center items-center gap-5">
-      <div className="flex justify-center items-center gap-5 overflow-x-scroll snap-x snap-mandatory scrollbar-hide hide-scrollbar">
+      <div className="flex justify-center items-center gap-5 overflow-x-scroll snap-x snap-mandatory scrollbar-hide hide-scrollbar pointer-events-auto">
         {options.map((option) => (
           <div key={option.id} onTouchStart={() => setChecked(option.id)}>
             <div
@@ -32,7 +32,7 @@ const Options = () => {
       </div>
       <div
         onTouchStart={() => router.push("/settings")}
-        className="border-l-2 border-base-300 pl-2"
+        className="border-l-2 border-base-300 pl-2 pointer-events-auto"
       >
         <div>
           <Image
