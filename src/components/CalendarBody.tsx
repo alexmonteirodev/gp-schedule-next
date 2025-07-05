@@ -123,6 +123,22 @@ const CalendarBody = () => {
     });
   }, [calendar, hours, options]);
 
+  //scroll automatico para mes atual
+  React.useEffect(() => {
+    if (!calendar || !containerRef.current) return;
+
+    const monthEl = document.getElementById("actual-month");
+    if (monthEl) {
+      const container = containerRef.current;
+      const offsetTop = monthEl.offsetTop;
+
+      container.scrollTo({
+        top: offsetTop,
+        behavior: "auto",
+      });
+    }
+  }, [calendar]);
+
   return (
     <div>
       <Label />
@@ -137,6 +153,11 @@ const CalendarBody = () => {
               monthRefs.current[index] = el;
             }}
             className={`mb-8 min-h-screen snap-center`}
+            id={
+              month.month === new Date().getMonth() + 1
+                ? "actual-month"
+                : undefined
+            }
           >
             <div className="grid grid-cols-7">
               {month.days.map((day, i) => (
