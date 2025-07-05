@@ -12,6 +12,7 @@ const CalendarBody = () => {
     checked,
     options,
     setHours,
+    hours,
   } = useCalendarContext();
   const containerRef = React.useRef<HTMLDivElement>(null);
   const monthRefs = React.useRef<(HTMLDivElement | null)[]>([]);
@@ -19,6 +20,7 @@ const CalendarBody = () => {
 
   function handleEdit(e: React.TouchEvent<HTMLDivElement>) {
     const el = e.currentTarget;
+
     const period = options.find((opt) => opt.id === checked);
     if (!period || !currentMonth) return;
 
@@ -100,6 +102,27 @@ const CalendarBody = () => {
     };
   }, [calendar, setCurrentMonth]);
 
+  React.useEffect(() => {
+    if (!calendar || !hours || hours.length === 0) return;
+
+    requestAnimationFrame(() => {
+      hours.forEach((monthArr) => {
+        monthArr.forEach(({ dayId, period }) => {
+          const el = document.getElementById(dayId);
+          const opt = options.find((o) => o.label === period);
+          if (el && opt) {
+            el.innerText = period;
+            el.style.backgroundColor = opt.color;
+            el.style.color = opt.textColor;
+            el.style.borderRadius = "0.2rem";
+            el.style.fontSize = "0.5rem";
+            el.style.padding = "2px 4px";
+          }
+        });
+      });
+    });
+  }, [calendar, hours, options]);
+
   return (
     <div>
       <Label />
@@ -150,40 +173,3 @@ const CalendarBody = () => {
 };
 
 export default CalendarBody;
-
-// "use client";
-// import React from "react";
-// import { CalendarContext } from "./Context";
-// import Label from "./Label";
-
-// const CalendarBody = () => {
-//   const calendar = React.useContext(CalendarContext);
-//   console.log(calendar);
-
-//   return (
-//     <div>
-//       <Label />
-//       <div className="overflow-y-scroll snap-y snap-mandatory h-screen scrollbar-hide">
-//         {calendar?.months.map((month) => (
-//           <div key={month.month} className="mb-8 snap-center min-h-screen ">
-//             <div className="grid grid-cols-7 ">
-//               {month.days.map((day, i) => (
-//                 <div
-//                   key={i}
-//                   className={`pt-2 h-20 text-center border-t border-base-300 font-bold ${
-//                     day?.isHoliday ? "border-t-2 border-purple-600" : ""
-//                   } ${i % 7 === 5 || i % 7 === 6 ? "text-base-400" : ""}`}
-//                 >
-//                   {day ? day.number : ""}
-//                   {/* <div>teste</div> */}
-//                 </div>
-//               ))}
-//             </div>
-//           </div>
-//         ))}
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default CalendarBody;
