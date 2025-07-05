@@ -16,9 +16,9 @@ type CalendarContextType = {
   setRotated: React.Dispatch<React.SetStateAction<boolean>>;
   options: PeriodOptionType[];
   setOptions: React.Dispatch<React.SetStateAction<PeriodOptionType[]>>;
-  hours: HourEntry[][] | null; // <-- permitir null
+  hours: HourEntry[][] | null;
   setHours: React.Dispatch<React.SetStateAction<HourEntry[][] | null>>;
-  totals: number[] | null; // <-- permitir null
+  totals: number[] | null;
   setTotals: React.Dispatch<React.SetStateAction<number[] | null>>;
 };
 

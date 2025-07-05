@@ -28,6 +28,7 @@ const CalendarBody = () => {
     const newLabel = period.label;
 
     setHours((prevHours) => {
+      if (!prevHours) return prevHours;
       const newHours = prevHours.map((monthArr) => [...monthArr]);
       const monthIndex = currentMonth - 1;
 
