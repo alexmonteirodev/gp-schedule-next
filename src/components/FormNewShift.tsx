@@ -12,21 +12,28 @@ const FormNewShift = () => {
     <div>
       <h3 className="text-base-900 font-bold text-xl mb-2">New Shift</h3>
       <form className="flex flex-col bg-base-200 rounded-md p-4">
-        <label htmlFor="title" className="text-base-900">
+        <label
+          htmlFor="title"
+          className="text-base-900 flex items-center gap-3"
+        >
           Title
+          <input
+            className="bg-base-50 rounded-md border-1 border-base-300"
+            type="text"
+          />
         </label>
-        <input
-          className="bg-base-50 rounded-md border-1 border-base-300"
-          type="text"
-        />
 
-        <label htmlFor="color" className="mt-4 flex items-center gap-3">
+        <hr className="my-4 text-base-300" />
+
+        <label htmlFor="color" className=" flex items-center gap-3">
           Color
           <input className="rounded-full" type="color" />
         </label>
 
+        <hr className="my-4 text-base-300" />
+
         <label
-          className="text-base-900 mt-4 flex items-center gap-2"
+          className="text-base-900 flex items-center gap-2"
           htmlFor="hours"
         >
           Hours
