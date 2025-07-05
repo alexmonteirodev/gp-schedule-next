@@ -15,7 +15,7 @@ const UserOptions = () => {
       <div className="flex justify-end mb-2">
         <button
           onTouchStart={() => setRotated(!rotated)}
-          className={`rounded-full bg-base-200 p-2 transition-transform duration-300 pointer-events-auto ${
+          className={`rounded-full bg-base-200 p-2 transition-transform duration-300 pointer-events-auto active:bg-base-300 ${
             rotated ? "rotate-135" : "rotate-0"
           }`}
         >

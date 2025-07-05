@@ -46,11 +46,11 @@ const FormNewShift = () => {
         <div className="flex gap-5 self-center fixed bottom-10">
           <button
             onClick={handleClose}
-            className="bg-base-300 rounded-md px-15 py-1"
+            className="bg-base-200 rounded-md px-15 py-1 active:bg-base-300"
           >
             Close
           </button>
-          <button className="bg-blue-500 text-base-50 rounded-md px-15 py-1">
+          <button className="bg-blue-500 text-base-50 rounded-md px-15 py-1 active:bg-blue-600">
             Done
           </button>
         </div>
