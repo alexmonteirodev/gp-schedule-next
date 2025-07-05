@@ -33,7 +33,7 @@ const Header = () => {
         <div className="text-base-400 font-medium">
           Total:{" "}
           <span className="italic">
-            {totals ? `${totals[currentMonth - 1]} hrs` : "-"} hrs
+            {totals ? `${totals[currentMonth - 1]}` : "-"} hrs
           </span>
         </div>
       </div>
