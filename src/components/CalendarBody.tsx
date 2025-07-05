@@ -124,8 +124,11 @@ const CalendarBody = () => {
   }, [calendar, hours, options]);
 
   //scroll automatico para mes atual
+  const initialScrollDone = React.useRef(false);
+
   React.useEffect(() => {
     if (!calendar || !containerRef.current) return;
+    if (initialScrollDone.current) return;
 
     const monthEl = document.getElementById("actual-month");
     if (monthEl) {
@@ -136,8 +139,13 @@ const CalendarBody = () => {
         top: offsetTop,
         behavior: "auto",
       });
+
+      initialScrollDone.current = true;
     }
   }, [calendar]);
+
+  //isToday - bolinha dia atual
+  const isToday = new Date().toISOString().slice(0, 10);
 
   return (
     <div>
@@ -169,14 +177,22 @@ const CalendarBody = () => {
                 >
                   {day ? (
                     <div>
-                      <div>{day.number}</div>
+                      <div
+                        className={`${
+                          day?.id === isToday
+                            ? "bg-base-900 text-base-50 rounded-full w-6 m-auto"
+                            : ""
+                        }`}
+                      >
+                        {day.number}
+                      </div>
                       <div
                         onTouchStart={handleEdit}
                         id={day.id}
                         className={`${
                           rotated
-                            ? "border-[1px] border-base-300 rounded-[0.2rem] text-[0.5rem] mx-0.5 h-4 text-center flex items-center justify-center"
-                            : "mx-0.5"
+                            ? "border-[1px] border-base-300 rounded-[0.2rem] text-[0.5rem] mx-0.5 h-4 text-center flex items-center justify-center mt-1"
+                            : "mx-0.5 mt-1"
                         }`}
                       ></div>
                     </div>

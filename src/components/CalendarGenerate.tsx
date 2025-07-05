@@ -51,7 +51,11 @@ const CalendarGenerate = (year: number, holidays: string[]): CalendarType => {
     // Dias do mês
     for (let d = 1; d <= daysInMonth; d++) {
       const date = new Date(year, m, d);
-      const id = date.toISOString().slice(0, 10);
+      const pad = (n: number) => n.toString().padStart(2, "0");
+      const id = `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(
+        date.getDate()
+      )}`;
+
       days.push({
         id,
         number: d,
