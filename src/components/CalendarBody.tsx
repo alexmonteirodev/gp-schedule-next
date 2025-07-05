@@ -192,7 +192,7 @@ const CalendarBody = () => {
                         id={day.id}
                         className={`${
                           rotated
-                            ? "border-[1px] border-base-300 rounded-[0.2rem]  mx-0.5 h-5 text-center flex items-center justify-center mt-1 transition-transform duration-250 active:scale-115 active:translate-z-2.5"
+                            ? "border-[1px] border-base-300 rounded-[0.2rem]  mx-0.5 h-5 text-center flex items-center justify-center mt-1 transition-transform duration-350 active:scale-125 active:translate-z-4"
                             : "mx-0.5 mt-1 flex items-center justify-center h-5"
                         }`}
                       ></div>
