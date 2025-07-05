@@ -56,7 +56,7 @@ const CalendarBody = () => {
         el.style.backgroundColor = period.color;
         el.style.color = period.textColor;
         el.style.borderRadius = "0.2rem";
-        el.style.fontSize = "0.56rem";
+        el.style.fontSize = "0.55rem";
         el.style.padding = "2px 4px";
 
         //hours add
@@ -116,7 +116,7 @@ const CalendarBody = () => {
             el.style.backgroundColor = opt.color;
             el.style.color = opt.textColor;
             el.style.borderRadius = "0.2rem";
-            el.style.fontSize = "0.56rem";
+            el.style.fontSize = "0.55rem";
             el.style.padding = "2px 4px";
           }
         });
