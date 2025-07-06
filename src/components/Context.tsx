@@ -20,6 +20,10 @@ type CalendarContextType = {
   setHours: React.Dispatch<React.SetStateAction<HourEntry[][] | null>>;
   totals: number[] | null;
   setTotals: React.Dispatch<React.SetStateAction<number[] | null>>;
+  deleted: boolean;
+  setDeleted: React.Dispatch<React.SetStateAction<boolean>>;
+  newShiftAdded: number;
+  setNewShiftAdded: React.Dispatch<React.SetStateAction<number>>;
 };
 
 const CalendarContext = React.createContext<CalendarContextType | null>(null);
@@ -54,8 +58,10 @@ export const CalendarProvider = ({ children }: { children: ReactNode }) => {
   const [rotated, setRotated] = React.useState(false);
   const [options, setOptions] =
     React.useState<PeriodOptionType[]>(defaultOptions);
-  const [hours, setHours] = React.useState<HourEntry[][] | null>(null); // começa como null
+  const [hours, setHours] = React.useState<HourEntry[][] | null>(null);
   const [totals, setTotals] = React.useState<number[] | null>(null);
+  const [deleted, setDeleted] = React.useState(false);
+  const [newShiftAdded, setNewShiftAdded] = React.useState(0);
 
   // 1. Carrega os dados do localStorage
   React.useEffect(() => {
@@ -109,6 +115,24 @@ export const CalendarProvider = ({ children }: { children: ReactNode }) => {
     }
   }, [hours, totals]);
 
+  //5. add user shifts
+  React.useEffect(() => {
+    const savedShifts = localStorage.getItem("userShiftsList");
+    if (savedShifts) {
+      try {
+        const userShifts: PeriodOptionType[] = JSON.parse(savedShifts);
+        setOptions([...defaultOptions, ...userShifts]);
+      } catch (e) {
+        console.error("Erro ao carregar shifts do localStorage", e);
+        setOptions(defaultOptions);
+      }
+    } else {
+      setOptions(defaultOptions);
+    }
+  }, [deleted]);
+
+  console.log(newShiftAdded);
+
   return (
     <CalendarContext.Provider
       value={{
@@ -125,6 +149,10 @@ export const CalendarProvider = ({ children }: { children: ReactNode }) => {
         setHours,
         totals,
         setTotals,
+        deleted,
+        setDeleted,
+        newShiftAdded,
+        setNewShiftAdded,
       }}
     >
       {children}

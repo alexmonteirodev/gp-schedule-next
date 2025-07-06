@@ -5,13 +5,19 @@ import { useRouter } from "next/navigation";
 import { useCalendarContext } from "./Context";
 
 const Options = () => {
-  const { checked, setChecked, options } = useCalendarContext();
+  const { checked, setChecked, options, newShiftAdded } = useCalendarContext();
+
+  React.useEffect(() => {});
 
   const router = useRouter();
 
   return (
     <div className="flex justify-center items-center gap-5">
-      <div className="flex justify-center items-center gap-5 overflow-x-scroll snap-x snap-mandatory scrollbar-hide hide-scrollbar pointer-events-auto">
+      <div
+        className={`flex justify-center items-center gap-5 overflow-x-scroll snap-x snap-mandatory scrollbar-hide hide-scrollbar pointer-events-auto ${
+          newShiftAdded === 0 ? "" : "pl-10"
+        }`}
+      >
         {options.map((option) => (
           <div key={option.id} onTouchStart={() => setChecked(option.id)}>
             <div

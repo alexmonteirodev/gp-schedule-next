@@ -28,18 +28,18 @@ export const defaultOptions: PeriodOptionType[] = [
     textColor: "var(--color-base-100)",
     hours: 9,
   },
-  //   {
-  //     id: "ingles",
-  //     label: "ingles",
-  //     color: "#F54900",
-  //     textColor: "var(--color-base-100)",
-  //     hours: 9,
-  //   },
-  //   {
-  //     id: "psicologo",
-  //     label: "psicologo",
-  //     color: "#9810FA",
-  //     textColor: "var(--color-base-100)",
-  //     hours: 9,
-  //   },
+  // {
+  //   id: "ingles",
+  //   label: "ingles",
+  //   color: "#F54900",
+  //   textColor: "var(--color-base-100)",
+  //   hours: 9,
+  // },
+  // {
+  //   id: "psicologo",
+  //   label: "psicologo",
+  //   color: "#9810FA",
+  //   textColor: "var(--color-base-100)",
+  //   hours: 9,
+  // },
 ];

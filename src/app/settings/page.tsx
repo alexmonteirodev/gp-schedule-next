@@ -3,6 +3,7 @@ import DeleteShift from "@/components/DeleteShift";
 import FormNewShift from "@/components/FormNewShift";
 import React from "react";
 import { useRouter } from "next/navigation";
+import { useCalendarContext } from "@/components/Context";
 
 const PageSettings = () => {
   const [newShiftLabel, setNewShiftLabel] = React.useState("");
@@ -14,6 +15,8 @@ const PageSettings = () => {
     "var(--color-base-100)"
   );
   const [errorForm, setErrorForm] = React.useState(false);
+
+  const { setNewShiftAdded } = useCalendarContext();
 
   function timeToDecimal(time: string): number {
     const [hours, minutes] = time.split(":").map(Number);
@@ -55,6 +58,8 @@ const PageSettings = () => {
       userShifts.push(newDefaultOptions);
 
       localStorage.setItem("userShiftsList", JSON.stringify(userShifts));
+
+      setNewShiftAdded((prev) => prev + 1);
 
       setErrorForm(false);
       router.push("/");
