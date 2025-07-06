@@ -1,48 +1,36 @@
 "use client";
-import { useRouter } from "next/navigation";
 import React from "react";
 
-const FormNewShift = () => {
-  const [newShiftLabel, setNewShiftLabel] = React.useState("");
-  const [newShiftColor, setNewShiftColor] = React.useState("");
-  const [newShiftHourStart, setNewShiftHourStart] = React.useState(0);
-  const [newShiftHourEnd, setNewShiftHourEnd] = React.useState(0);
+type ShiftProps = {
+  newShiftLabel: string;
+  setNewShiftLabel: React.Dispatch<React.SetStateAction<string>>;
+  newShiftColor: string;
+  setNewShiftColor: React.Dispatch<React.SetStateAction<string>>;
+  newShiftHourStart: number;
+  setNewShiftHourStart: React.Dispatch<React.SetStateAction<number>>;
+  newShiftHourEnd: number;
+  setNewShiftHourEnd: React.Dispatch<React.SetStateAction<number>>;
+  newTextColor: string;
+  setTextNewColor: React.Dispatch<React.SetStateAction<string>>;
+  errorForm: boolean;
+  handleClose: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  handleSubmitNewOption: (e: React.FormEvent<HTMLFormElement>) => void;
+  timeToDecimal: (time: string) => number;
+};
 
-  const [newTextColor, setTextNewColor] = React.useState(
-    "var(--color-base-100)"
-  );
-  const [errorForm, setErrorForm] = React.useState(false);
-
-  function timeToDecimal(time: string): number {
-    const [hours, minutes] = time.split(":").map(Number);
-    return hours + minutes / 60;
-  }
-
-  const newDefaultOptions = {
-    id: newShiftLabel.toLocaleLowerCase(),
-    label:
-      newShiftLabel.charAt(0).toUpperCase() +
-      newShiftLabel.slice(1).toLowerCase(),
-    color: newShiftColor,
-    textColor: newTextColor,
-    hours: newShiftHourEnd - newShiftHourStart,
-  };
-
-  function handleSubmitNewOption(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    if (!newShiftLabel.length && !newShiftColor.length)
-      return setErrorForm(true);
-    console.log(newDefaultOptions);
-  }
-
-  const router = useRouter();
-  function handleClose(e: React.MouseEvent<HTMLButtonElement>) {
-    e.preventDefault();
-    alert("teste");
-    router.push("/");
-  }
-
-  console.log(newShiftHourEnd - newShiftHourStart);
+const FormNewShift = ({ shiftProps }: { shiftProps: ShiftProps }) => {
+  const {
+    setNewShiftLabel,
+    setNewShiftColor,
+    setNewShiftHourStart,
+    setNewShiftHourEnd,
+    newTextColor,
+    setTextNewColor,
+    errorForm,
+    handleSubmitNewOption,
+    handleClose,
+    timeToDecimal,
+  } = shiftProps;
 
   return (
     <div>
@@ -57,7 +45,7 @@ const FormNewShift = () => {
         >
           Title
           <input
-            className="bg-base-50 rounded-md border-1 border-base-300 w-22 px-2"
+            className="bg-base-50 rounded-md border-1 border-base-300 w-25 px-2"
             type="text"
             maxLength={9}
             onChange={(e) => setNewShiftLabel(e.currentTarget.value)}
@@ -90,7 +78,7 @@ const FormNewShift = () => {
           <div className="flex gap-2">
             <div
               onTouchStart={() => setTextNewColor("var(--color-base-100)")}
-              className={`rounded-full bg-base-100 border-2 border-base-300 w-5 h-5 ${
+              className={`rounded-full bg-base-100 border-2 border-base-300 w-6 h-6 ${
                 newTextColor === "var(--color-base-100)"
                   ? "border-blue-400"
                   : ""
@@ -98,7 +86,7 @@ const FormNewShift = () => {
             ></div>
             <div
               onTouchStart={() => setTextNewColor("var(--color-base-900)")}
-              className={`rounded-full bg-base-900 border-2 border-base-300 w-5 h-5 ${
+              className={`rounded-full bg-base-900 border-2 border-base-300 w-6 h-6 ${
                 newTextColor === "var(--color-base-900)"
                   ? "border-blue-400"
                   : ""
@@ -116,7 +104,7 @@ const FormNewShift = () => {
           >
             Start
             <input
-              className="bg-base-50 rounded-md border-1 border-base-300 w-22 px-2"
+              className="bg-base-50 rounded-md border-1 border-base-300 w-20 px-2"
               type="time"
               onChange={(e) =>
                 setNewShiftHourStart(
@@ -131,7 +119,7 @@ const FormNewShift = () => {
           >
             End
             <input
-              className="bg-base-50 rounded-md border-1 border-base-300 w-22 px-2"
+              className="bg-base-50 rounded-md border-1 border-base-300 w-20 px-2"
               type="time"
               onChange={(e) =>
                 setNewShiftHourEnd(
@@ -140,6 +128,10 @@ const FormNewShift = () => {
               }
             />
           </label>
+          <p className="text-base-400 text-sm">
+            Select the event time only if you want it to add to your hours for
+            the month.
+          </p>
         </div>
 
         <div className="flex gap-5 self-center fixed bottom-10">
