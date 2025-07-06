@@ -28,7 +28,6 @@ const FormNewShift = ({ shiftProps }: { shiftProps: ShiftProps }) => {
     setTextNewColor,
     errorForm,
     handleSubmitNewOption,
-    handleClose,
     timeToDecimal,
   } = shiftProps;
 
@@ -132,21 +131,6 @@ const FormNewShift = ({ shiftProps }: { shiftProps: ShiftProps }) => {
             Select the event time only if you want it to add to your hours for
             the month.
           </p>
-        </div>
-
-        <div className="flex gap-5 self-center fixed bottom-10">
-          <button
-            onClick={handleClose}
-            className="bg-base-200 rounded-md px-15 py-1 active:bg-base-300"
-          >
-            Close
-          </button>
-          <button
-            className="bg-blue-500 text-base-50 rounded-md px-15 py-1 active:bg-blue-600"
-            type="submit"
-          >
-            Done
-          </button>
         </div>
       </form>
     </div>

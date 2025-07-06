@@ -43,17 +43,25 @@ const PageSettings = () => {
   const router = useRouter();
   function handleClose(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
-
-    const confirmDiscard = window.confirm(
-      "Do you want to discard the changes?"
-    );
-    if (confirmDiscard) {
+    if (
+      newShiftLabel ||
+      newShiftColor ||
+      newShiftHourStart ||
+      newShiftHourEnd
+    ) {
+      const confirmDiscard = window.confirm(
+        "Do you want to discard the changes?"
+      );
+      if (confirmDiscard) {
+        router.push("/");
+      }
+    } else {
       router.push("/");
     }
   }
   console.log(newDefaultOptions);
   return (
-    <div className="grid m-5 *:mb-5">
+    <div className="grid m-5 gap-3">
       <h2 className="m-auto mt-2 text-base-900 font-bold text-2xl">Settings</h2>
       <DarkMode />
       <FormNewShift
@@ -75,6 +83,20 @@ const PageSettings = () => {
         }}
       />
       <DeleteShift />
+      <div className="flex gap-5 self-center">
+        <button
+          onClick={handleClose}
+          className="bg-base-200 rounded-md px-15 py-1 active:bg-base-300"
+        >
+          Close
+        </button>
+        <button
+          className="bg-blue-500 text-base-50 rounded-md px-15 py-1 active:bg-blue-600"
+          type="submit"
+        >
+          Done
+        </button>
+      </div>
     </div>
   );
 };

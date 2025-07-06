@@ -32,7 +32,7 @@ const Options = () => {
       </div>
       <div
         onTouchStart={() => router.push("/settings")}
-        className="border-l-2 border-base-300 pl-2 pointer-events-auto"
+        className="border-l-2 border-base-300 px-3 pointer-events-auto"
       >
         <div>
           <Image
