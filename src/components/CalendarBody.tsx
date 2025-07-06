@@ -146,7 +146,7 @@ const CalendarBody = () => {
   }, [calendar]);
 
   //isToday - bolinha dia atual
-  const isToday = new Date().toISOString().slice(0, 10);
+  const isToday = new Date().toLocaleDateString("sv-SE");
 
   return (
     <div>

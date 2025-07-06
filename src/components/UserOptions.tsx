@@ -19,7 +19,7 @@ const UserOptions = () => {
             rotated ? "rotate-135" : "rotate-0"
           }`}
         >
-          <Image src={addSvg} alt="x" className="w-5 h-5" />
+          <Image src={addSvg} alt="x" className="w-5 h-5" priority />
         </button>
       </div>
       <div
