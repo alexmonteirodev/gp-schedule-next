@@ -13,8 +13,9 @@ type ShiftProps = {
   newTextColor: string;
   setTextNewColor: React.Dispatch<React.SetStateAction<string>>;
   errorForm: boolean;
+  setErrorForm: React.Dispatch<React.SetStateAction<boolean>>;
   handleClose: (e: React.MouseEvent<HTMLButtonElement>) => void;
-  handleSubmitNewOption: (e: React.FormEvent<HTMLFormElement>) => void;
+  handleSubmitNewOption: (e: React.MouseEvent<HTMLButtonElement>) => void;
   timeToDecimal: (time: string) => number;
 };
 
@@ -27,17 +28,21 @@ const FormNewShift = ({ shiftProps }: { shiftProps: ShiftProps }) => {
     newTextColor,
     setTextNewColor,
     errorForm,
-    handleSubmitNewOption,
     timeToDecimal,
+    setErrorForm,
   } = shiftProps;
 
   return (
     <div>
-      <h3 className="text-base-900 font-bold text-xl mb-2">New Shift</h3>
-      <form
-        className="flex flex-col bg-base-200 rounded-md p-4"
-        onSubmit={handleSubmitNewOption}
-      >
+      <div className="flex items-center justify-between gap-3">
+        <h3 className="text-base-900 font-bold text-xl mb-2">New Shift</h3>
+        {errorForm ? (
+          <p className="text-red-400 text-sm">* Fill in all fields</p>
+        ) : (
+          ""
+        )}
+      </div>
+      <form className="flex flex-col bg-base-200 rounded-md p-4">
         <label
           htmlFor="title"
           className="text-base-900 flex items-center gap-3"
@@ -47,13 +52,11 @@ const FormNewShift = ({ shiftProps }: { shiftProps: ShiftProps }) => {
             className="bg-base-50 rounded-md border-1 border-base-300 w-25 px-2"
             type="text"
             maxLength={9}
-            onChange={(e) => setNewShiftLabel(e.currentTarget.value)}
+            onChange={(e) => {
+              setNewShiftLabel(e.currentTarget.value);
+              setErrorForm(false);
+            }}
           />
-          {errorForm ? (
-            <p className="text-red-400 text-sm">write a title</p>
-          ) : (
-            ""
-          )}
         </label>
 
         <hr className="my-4 text-base-300" />
@@ -63,13 +66,11 @@ const FormNewShift = ({ shiftProps }: { shiftProps: ShiftProps }) => {
           <input
             className="rounded-full"
             type="color"
-            onChange={(e) => setNewShiftColor(e.currentTarget.value)}
+            onChange={(e) => {
+              setNewShiftColor(e.currentTarget.value);
+              setErrorForm(false);
+            }}
           />
-          {errorForm ? (
-            <p className="text-red-400 text-sm">choose a background color</p>
-          ) : (
-            ""
-          )}
         </label>
 
         <div className="flex gap-5 mt-3 items-center">

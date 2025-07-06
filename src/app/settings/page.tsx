@@ -1,5 +1,4 @@
 "use client";
-import DarkMode from "@/components/DarkMode";
 import DeleteShift from "@/components/DeleteShift";
 import FormNewShift from "@/components/FormNewShift";
 import React from "react";
@@ -33,11 +32,35 @@ const PageSettings = () => {
     hours: Number(hoursComputed.toFixed(2)),
   };
 
-  function handleSubmitNewOption(e: React.FormEvent<HTMLFormElement>) {
+  function handleSubmitNewOption(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
-    if (!newShiftLabel.length && !newShiftColor.length)
-      return setErrorForm(true);
-    console.log(newDefaultOptions);
+    if (!newShiftLabel.length || !newShiftColor.length) {
+      setErrorForm(true);
+      return;
+    }
+
+    try {
+      const savedShifts = localStorage.getItem("userShiftsList");
+      const userShifts = savedShifts ? JSON.parse(savedShifts) : [];
+      const shiftExists = userShifts.some(
+        (shift: { id: string }) =>
+          shift.id === newShiftLabel.trim().toLowerCase()
+      );
+
+      if (shiftExists) {
+        alert("There is already a shift with that name.");
+        return;
+      }
+
+      userShifts.push(newDefaultOptions);
+
+      localStorage.setItem("userShiftsList", JSON.stringify(userShifts));
+
+      setErrorForm(false);
+      router.push("/");
+    } catch (err) {
+      console.log("Erro ao salvar novo shift", err);
+    }
   }
 
   const router = useRouter();
@@ -63,7 +86,6 @@ const PageSettings = () => {
   return (
     <div className="grid m-5 gap-3">
       <h2 className="m-auto mt-2 text-base-900 font-bold text-2xl">Settings</h2>
-      <DarkMode />
       <FormNewShift
         shiftProps={{
           newShiftLabel,
@@ -80,19 +102,21 @@ const PageSettings = () => {
           handleClose,
           handleSubmitNewOption,
           timeToDecimal,
+          setErrorForm,
         }}
       />
       <DeleteShift />
-      <div className="flex gap-5 self-center">
+      <div className="flex gap-5 justify-between">
         <button
           onClick={handleClose}
-          className="bg-base-200 rounded-md px-15 py-1 active:bg-base-300"
+          className="bg-base-200 rounded-md px-16 py-1 active:bg-base-300"
         >
           Close
         </button>
         <button
-          className="bg-blue-500 text-base-50 rounded-md px-15 py-1 active:bg-blue-600"
+          className="bg-blue-500 text-base-50 rounded-md px-16 py-1 active:bg-blue-600"
           type="submit"
+          onClick={handleSubmitNewOption}
         >
           Done
         </button>
