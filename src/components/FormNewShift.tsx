@@ -5,7 +5,13 @@ import React from "react";
 const FormNewShift = () => {
   const [newShiftLabel, setNewShiftLabel] = React.useState("");
   const [newShiftColor, setNewShiftColor] = React.useState("");
-  const [newShiftHour, setNewShiftHour] = React.useState(0);
+  const [newShiftHourStart, setNewShiftHourStart] = React.useState(0);
+  const [newShiftHourEnd, setNewShiftHourEnd] = React.useState(0);
+
+  const [newTextColor, setTextNewColor] = React.useState(
+    "var(--color-base-100)"
+  );
+  const [errorForm, setErrorForm] = React.useState(false);
 
   function timeToDecimal(time: string): number {
     const [hours, minutes] = time.split(":").map(Number);
@@ -18,21 +24,25 @@ const FormNewShift = () => {
       newShiftLabel.charAt(0).toUpperCase() +
       newShiftLabel.slice(1).toLowerCase(),
     color: newShiftColor,
-    textColor: "var(--color-base-900)",
-    hours: newShiftHour,
+    textColor: newTextColor,
+    hours: newShiftHourEnd - newShiftHourStart,
   };
 
   function handleSubmitNewOption(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    if (newShiftLabel.length && newShiftColor.length)
-      console.log(newDefaultOptions);
+    if (!newShiftLabel.length && !newShiftColor.length)
+      return setErrorForm(true);
+    console.log(newDefaultOptions);
   }
 
   const router = useRouter();
   function handleClose(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
+    alert("teste");
     router.push("/");
   }
+
+  console.log(newShiftHourEnd - newShiftHourStart);
 
   return (
     <div>
@@ -47,11 +57,16 @@ const FormNewShift = () => {
         >
           Title
           <input
-            className="bg-base-50 rounded-md border-1 border-base-300 w-25"
+            className="bg-base-50 rounded-md border-1 border-base-300 w-22 px-2"
             type="text"
             maxLength={9}
             onChange={(e) => setNewShiftLabel(e.currentTarget.value)}
           />
+          {errorForm ? (
+            <p className="text-red-400 text-sm">write a title</p>
+          ) : (
+            ""
+          )}
         </label>
 
         <hr className="my-4 text-base-300" />
@@ -63,25 +78,69 @@ const FormNewShift = () => {
             type="color"
             onChange={(e) => setNewShiftColor(e.currentTarget.value)}
           />
+          {errorForm ? (
+            <p className="text-red-400 text-sm">choose a background color</p>
+          ) : (
+            ""
+          )}
         </label>
+
+        <div className="flex gap-5 mt-3 items-center">
+          <p>Title</p>
+          <div className="flex gap-2">
+            <div
+              onTouchStart={() => setTextNewColor("var(--color-base-100)")}
+              className={`rounded-full bg-base-100 border-2 border-base-300 w-5 h-5 ${
+                newTextColor === "var(--color-base-100)"
+                  ? "border-blue-400"
+                  : ""
+              }`}
+            ></div>
+            <div
+              onTouchStart={() => setTextNewColor("var(--color-base-900)")}
+              className={`rounded-full bg-base-900 border-2 border-base-300 w-5 h-5 ${
+                newTextColor === "var(--color-base-900)"
+                  ? "border-blue-400"
+                  : ""
+              }`}
+            ></div>
+          </div>
+        </div>
 
         <hr className="my-4 text-base-300" />
 
-        <label
-          className="text-base-900 flex items-center gap-2"
-          htmlFor="hours"
-        >
-          Hours
-          <input
-            className="bg-base-50 rounded-md border-1 border-base-300 w-25 px-2"
-            type="time"
-            onChange={(e) =>
-              setNewShiftHour(
-                Number(timeToDecimal(e.currentTarget.value).toFixed(2))
-              )
-            }
-          />
-        </label>
+        <div className="space-y-3">
+          <label
+            className="text-base-900 flex items-center gap-2"
+            htmlFor="hours"
+          >
+            Start
+            <input
+              className="bg-base-50 rounded-md border-1 border-base-300 w-22 px-2"
+              type="time"
+              onChange={(e) =>
+                setNewShiftHourStart(
+                  Number(timeToDecimal(e.currentTarget.value).toFixed(2))
+                )
+              }
+            />
+          </label>
+          <label
+            className="text-base-900 flex items-center gap-4"
+            htmlFor="hours"
+          >
+            End
+            <input
+              className="bg-base-50 rounded-md border-1 border-base-300 w-22 px-2"
+              type="time"
+              onChange={(e) =>
+                setNewShiftHourEnd(
+                  Number(timeToDecimal(e.currentTarget.value).toFixed(2))
+                )
+              }
+            />
+          </label>
+        </div>
 
         <div className="flex gap-5 self-center fixed bottom-10">
           <button
