@@ -129,9 +129,7 @@ export const CalendarProvider = ({ children }: { children: ReactNode }) => {
     } else {
       setOptions(defaultOptions);
     }
-  }, [deleted]);
-
-  console.log(newShiftAdded);
+  }, [deleted, newShiftAdded]);
 
   return (
     <CalendarContext.Provider
