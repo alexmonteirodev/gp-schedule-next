@@ -4,6 +4,7 @@ import FormNewShift from "@/components/FormNewShift";
 import React from "react";
 import { useRouter } from "next/navigation";
 import { useCalendarContext } from "@/components/Context";
+import DarkMode from "@/components/DarkMode";
 
 const PageSettings = () => {
   const [newShiftLabel, setNewShiftLabel] = React.useState("");
@@ -90,7 +91,8 @@ const PageSettings = () => {
   console.log(newDefaultOptions);
   return (
     <div className="grid m-5 gap-3">
-      <h2 className="m-auto mt-2 text-base-900 font-bold text-2xl">Settings</h2>
+      <h2 className="m-auto text-base-900 font-bold text-2xl">Settings</h2>
+      <DarkMode />
       <FormNewShift
         shiftProps={{
           newShiftLabel,
@@ -114,12 +116,12 @@ const PageSettings = () => {
       <div className="flex gap-5 justify-between">
         <button
           onClick={handleClose}
-          className="bg-base-200 rounded-md px-16 py-1 active:bg-base-300"
+          className="bg-base-200 rounded-md flex-1 py-1 active:bg-base-300"
         >
           Close
         </button>
         <button
-          className="bg-blue-500 text-base-50 rounded-md px-16 py-1 active:bg-blue-600"
+          className="bg-blue-500 text-base-50 rounded-md flex-1 py-1 active:bg-blue-600"
           type="submit"
           onClick={handleSubmitNewOption}
         >
