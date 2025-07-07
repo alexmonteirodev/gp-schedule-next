@@ -94,15 +94,21 @@ export const CalendarProvider = ({ children }: { children: ReactNode }) => {
 
   // 3. Recalcula os totais quando hours mudar
   React.useEffect(() => {
-    if (!hours) return;
+    if (!hours || !options) return;
+
     const newTotals = hours.map((monthEntries) => {
       return monthEntries.reduce((total, entry) => {
-        const option = defaultOptions.find((opt) => opt.label === entry.period);
-        return option ? total + option.hours : total;
+        const option = options.find((opt) => opt.label === entry.period);
+        if (!option) {
+          console.warn("Turno não encontrado:", entry.period);
+          return total;
+        }
+        return total + option.hours;
       }, 0);
     });
+
     setTotals(newTotals);
-  }, [hours]);
+  }, [hours, options]);
 
   // 4. Salva no localStorage sempre que hours ou totals mudam
   React.useEffect(() => {
@@ -122,8 +128,8 @@ export const CalendarProvider = ({ children }: { children: ReactNode }) => {
       try {
         const userShifts: PeriodOptionType[] = JSON.parse(savedShifts);
         setOptions([...defaultOptions, ...userShifts]);
-      } catch (e) {
-        console.error("Erro ao carregar shifts do localStorage", e);
+      } catch (err) {
+        console.error("Erro ao carregar shifts do localStorage", err);
         setOptions(defaultOptions);
       }
     } else {
