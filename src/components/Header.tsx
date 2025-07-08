@@ -40,7 +40,7 @@ const Header = () => {
 
   return (
     <div className="mt-5 mb-5">
-      <div className="flex">
+      {/* <div className="flex">
         <h4 className="font-bold m-auto mb-5">SpinUp</h4>
         <button
           onTouchStart={() => {
@@ -55,7 +55,7 @@ const Header = () => {
         >
           <Image src={settings} alt="x" className="h-5 w-5" priority />
         </button>
-      </div>
+      </div> */}
       <div className="flex items-center justify-between">
         <div className="flex">
           <div className="pr-5 border-r-2 border-base-200">
@@ -79,7 +79,7 @@ const Header = () => {
             </div>
           </div>
         </div>
-        {/* <button
+        <button
           onTouchStart={() => {
             setSettingsOn(!settingsOn);
             setTimeout(() => {
@@ -91,7 +91,7 @@ const Header = () => {
           }`}
         >
           <Image src={settings} alt="x" className="h-5 w-5" priority />
-        </button> */}
+        </button>
       </div>
     </div>
   );
