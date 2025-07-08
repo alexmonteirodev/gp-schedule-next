@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import settings from "../../public/settings.svg";
+import addSvg from "../../public/add.svg";
 import { useRouter } from "next/navigation";
 import { useCalendarContext } from "./Context";
 
@@ -37,17 +37,13 @@ const Options = () => {
         ))}
       </div>
       <div
-        onTouchStart={() => router.push("/settings")}
+        onTouchStart={() => router.push("/edit-shift")}
         className="border-l-2 border-base-300 px-3 pointer-events-auto"
       >
         <div>
-          <Image
-            className={`m-auto h-5 w-5`}
-            src={settings}
-            alt="settings.svg"
-          />
+          <Image className={`m-auto h-5 w-5`} src={addSvg} alt="settings.svg" />
         </div>
-        <p className="font-normal text-base-500">Settings</p>
+        <p className="font-normal text-base-500">New Shift</p>
       </div>
     </div>
   );

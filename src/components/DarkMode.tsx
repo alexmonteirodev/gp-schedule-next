@@ -30,6 +30,7 @@ const DarkMode = () => {
             }`}
           />
         </div>
+        <p className="text-red-400">is not working yet</p>
       </label>
     </div>
   );

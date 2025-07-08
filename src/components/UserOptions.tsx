@@ -15,11 +15,11 @@ const UserOptions = () => {
       <div className="flex justify-end mb-2">
         <button
           onTouchStart={() => setRotated(!rotated)}
-          className={`rounded-full bg-base-200 p-2 transition-transform duration-300 pointer-events-auto active:bg-base-300 ${
+          className={`rounded-full bg-base-950 p-4 transition-transform duration-300 pointer-events-auto active:bg-base-900 ${
             rotated ? "rotate-135" : "rotate-0"
           }`}
         >
-          <Image src={addSvg} alt="x" className="w-5 h-5" priority />
+          <Image src={addSvg} alt="x" className="w-4 h-4" priority />
         </button>
       </div>
       <div

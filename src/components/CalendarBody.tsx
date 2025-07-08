@@ -161,7 +161,7 @@ const CalendarBody = () => {
             ref={(el) => {
               monthRefs.current[index] = el;
             }}
-            className={`mb-8 min-h-screen snap-center`}
+            className={` mb-8 min-h-screen snap-center`}
             id={
               month.month === new Date().getMonth() + 1
                 ? "actual-month"
@@ -192,8 +192,8 @@ const CalendarBody = () => {
                         id={day.id}
                         className={`${
                           rotated
-                            ? "border-[1px] border-base-300 rounded-[0.2rem]  mx-0.5 h-5 text-center flex items-center justify-center mt-1 transition-transform duration-200 active:scale-120 active:translate-z-3"
-                            : "mx-0.5 mt-1 flex items-center justify-center h-5"
+                            ? "border-[1px] border-base-300 rounded-[0.2rem]  mx-0.5 h-8 text-center flex items-center justify-center mt-1 transition-transform duration-200 active:scale-120 active:translate-z-3"
+                            : "mx-0.5 mt-1 flex items-center justify-center h-8"
                         }`}
                       ></div>
                     </div>
