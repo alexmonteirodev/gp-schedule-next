@@ -26,6 +26,18 @@ const Header = () => {
     "December",
   ];
 
+  let workedDays = 0;
+  hours?.[6].forEach((obj) => {
+    if (
+      obj.period === "Morning" ||
+      obj.period === "Afternoon" ||
+      obj.period === "Night"
+    ) {
+      workedDays += 1;
+    }
+    return workedDays;
+  });
+
   return (
     <div className="mt-5 mb-5">
       <div className="flex">
@@ -59,7 +71,7 @@ const Header = () => {
               <p className="text-base-400 text-[0.8rem]">Worked this month</p>
             </div>
             <div className="text-base-800 font-medium flex text-2xl space-x-2">
-              <span className="">{hours?.[currentMonth - 1].length}days</span>
+              <span className="">{workedDays}days</span>
               <span>|</span>
               <span className="">
                 {totals ? `${totals[currentMonth - 1]}` : "-"}hrs

@@ -32,7 +32,10 @@ const PageEdit = () => {
       newShiftLabel.slice(1).toLowerCase(),
     color: newShiftColor,
     textColor: newTextColor,
-    hours: Number(hoursComputed.toFixed(2)),
+    hours:
+      Number(hoursComputed.toFixed(2)) > 0
+        ? Number(hoursComputed.toFixed(2))
+        : 0,
   };
 
   function handleSubmitNewOption(e: React.MouseEvent<HTMLButtonElement>) {
