@@ -38,7 +38,7 @@ const Header = () => {
   });
 
   return (
-    <div className="mt-5 mb-5">
+    <div className="my-3">
       {/* <div className="flex">
         <h4 className="font-bold m-auto mb-5">SpinUp</h4>
         <button

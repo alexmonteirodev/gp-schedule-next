@@ -4,7 +4,7 @@ import UserOptions from "@/components/UserOptions";
 
 export default function Home() {
   return (
-    <div className="m-5">
+    <div className="mx-5 my-3">
       <header>
         <Header />
       </header>
