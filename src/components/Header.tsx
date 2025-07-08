@@ -9,7 +9,7 @@ const Header = () => {
   const { calendar, currentMonth, totals, hours } = useCalendarContext();
   const router = useRouter();
 
-  if (!currentMonth) return;
+  if (!currentMonth) return null;
 
   const monthNames = [
     "January",
@@ -27,7 +27,7 @@ const Header = () => {
   ];
 
   let workedDays = 0;
-  hours?.[6].forEach((obj) => {
+  hours?.[currentMonth - 1]?.forEach((obj) => {
     if (
       obj.period === "Morning" ||
       obj.period === "Afternoon" ||
@@ -35,7 +35,6 @@ const Header = () => {
     ) {
       workedDays += 1;
     }
-    return workedDays;
   });
 
   return (
