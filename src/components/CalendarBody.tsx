@@ -172,7 +172,7 @@ const CalendarBody = () => {
               {month.days.map((day, i) => (
                 <div
                   key={i}
-                  className={`pt-2 h-20 text-center border-t border-base-300 font-bold ${
+                  className={`pt-0.5 h-20 text-center border-t border-base-300 font-bold ${
                     day?.isHoliday ? "border-t-2 border-purple-600" : ""
                   } ${i % 7 === 5 || i % 7 === 6 ? "text-base-400" : ""}`}
                 >
