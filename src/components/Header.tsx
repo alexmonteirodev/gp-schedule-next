@@ -57,8 +57,8 @@ const Header = () => {
           <Image src={settings} alt="x" className="h-5 w-5" priority />
         </button>
       </div> */}
-      <div className="flex items-center justify-between">
-        <div className="flex">
+      <div className="flex items-center">
+        <div className="flex items-center">
           <div className="pr-5 border-r-2 border-base-200 dark:border-base-800">
             <p className="text-base-400 text-[0.8rem]">
               {calendar ? calendar.year : "Year"}
