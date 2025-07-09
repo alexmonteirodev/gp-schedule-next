@@ -29,6 +29,13 @@ export const defaultOptions: PeriodOptionType[] = [
     hours: 9,
   },
   // {
+  //   id: "sick",
+  //   label: "Sick",
+  //   color: "#5D0EC1",
+  //   textColor: "var(--color-base-100)",
+  //   hours: 0,
+  // },
+  // {
   //   id: "ingles",
   //   label: "ingles",
   //   color: "#F54900",

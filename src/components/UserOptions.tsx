@@ -23,7 +23,7 @@ const UserOptions = () => {
         </button>
       </div>
       <div
-        className="bg-base-100 rounded-md transition-transform duration-300 py-3 px-2"
+        className="bg-base-50 rounded-md transition-transform duration-300 p-2 border border-base-200"
         style={{
           transform: rotated === false ? "translateY(300%)" : "translateY(0)",
         }}

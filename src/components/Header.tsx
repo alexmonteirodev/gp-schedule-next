@@ -4,6 +4,7 @@ import { useCalendarContext } from "./Context";
 import Image from "next/image";
 import settings from "../../public/settings.svg";
 import { useRouter } from "next/navigation";
+
 const Header = () => {
   const [settingsOn, setSettingsOn] = React.useState(false);
   const { calendar, currentMonth, totals, hours } = useCalendarContext();

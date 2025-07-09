@@ -12,33 +12,34 @@ const Options = () => {
   const router = useRouter();
 
   return (
-    <div className="flex justify-center items-center gap-5">
+    <div className="flex justify-between items-center gap-5 ">
       <div
-        className={`flex justify-center items-center gap-5 overflow-x-scroll snap-x snap-mandatory scrollbar-hide hide-scrollbar pointer-events-auto ${
-          newShiftAdded === 0 ? "" : "pl-10"
-        }`}
+        className={`flex-1 overflow-x-scroll snap-x snap-mandatory scrollbar-hide hide-scrollbar pointer-events-auto bg-base-100 py-3 rounded-md pl-4 pr-1`}
+        // ${newShiftAdded === 0 ? "" : "pl-10"}
       >
-        {options.map((option) => (
-          <div key={option.id} onTouchStart={() => setChecked(option.id)}>
-            <div
-              className={`h-4 w-4 rounded-full m-auto ${
-                checked === option.id ? "border-2 border-blue-400" : ""
-              }`}
-              style={{ backgroundColor: option.color }}
-            ></div>
-            <p
-              className={`font-normal text-base-500 ${
-                checked === option.id ? " text-blue-400" : ""
-              }`}
-            >
-              {option.id}
-            </p>
-          </div>
-        ))}
+        <div className="flex gap-4 w-max">
+          {options.map((option) => (
+            <div key={option.id} onTouchStart={() => setChecked(option.id)}>
+              <div
+                className={`h-4 w-4 rounded-full m-auto ${
+                  checked === option.id ? "border-2 border-blue-400" : ""
+                }`}
+                style={{ backgroundColor: option.color }}
+              ></div>
+              <p
+                className={`font-normal text-base-500 ${
+                  checked === option.id ? " text-blue-400" : ""
+                }`}
+              >
+                {option.id}
+              </p>
+            </div>
+          ))}
+        </div>
       </div>
       <div
         onTouchStart={() => router.push("/edit-shift")}
-        className="border-l-2 border-base-300 px-3 pointer-events-auto"
+        className="flex flex-col items-center justify-center border-l-2 border-base-300 px-3 pointer-events-auto shrink-0"
       >
         <div>
           <Image className={`m-auto h-5 w-5`} src={addSvg} alt="settings.svg" />

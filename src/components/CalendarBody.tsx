@@ -2,6 +2,20 @@
 import React from "react";
 import { useCalendarContext } from "./Context";
 import Label from "./Label";
+const monthNames = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
 
 const CalendarBody = () => {
   const {
@@ -56,7 +70,7 @@ const CalendarBody = () => {
         el.style.backgroundColor = period.color;
         el.style.color = period.textColor;
         el.style.borderRadius = "0.2rem";
-        el.style.fontSize = "0.55rem";
+        el.style.fontSize = "0.5rem";
         el.style.padding = "2px 4px";
 
         //hours add
@@ -116,7 +130,7 @@ const CalendarBody = () => {
             el.style.backgroundColor = opt.color;
             el.style.color = opt.textColor;
             el.style.borderRadius = "0.2rem";
-            el.style.fontSize = "0.55rem";
+            el.style.fontSize = "0.5rem";
             el.style.padding = "2px 4px";
           }
         });
@@ -161,14 +175,14 @@ const CalendarBody = () => {
             ref={(el) => {
               monthRefs.current[index] = el;
             }}
-            className={` mb-8 min-h-screen snap-center`}
+            className={`mb-8 min-h-screen snap-center`}
             id={
               month.month === new Date().getMonth() + 1
                 ? "actual-month"
                 : undefined
             }
           >
-            <div className="grid grid-cols-7">
+            <div className="grid grid-cols-7 ">
               {month.days.map((day, i) => (
                 <div
                   key={i}
@@ -192,8 +206,8 @@ const CalendarBody = () => {
                         id={day.id}
                         className={`${
                           rotated
-                            ? "border-[1px] border-base-300 rounded-[0.2rem]  mx-0.5 h-7 text-center flex items-center justify-center mt-1 transition-transform duration-200 active:scale-120 active:translate-z-3"
-                            : "mx-0.5 mt-1 flex items-center justify-center h-7"
+                            ? "border-[1px] border-base-300 rounded-[0.2rem]  mx-0.5 h-[1.7rem] text-center flex items-center justify-center mt-1 transition-transform duration-200 active:scale-120 active:translate-z-3"
+                            : "mx-0.5 mt-1 flex items-center justify-center h-[1.7rem]"
                         }`}
                       ></div>
                     </div>
