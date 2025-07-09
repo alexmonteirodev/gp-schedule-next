@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useCalendarContext } from "./Context";
 
 const Options = () => {
-  const { checked, setChecked, options, newShiftAdded } = useCalendarContext();
+  const { checked, setChecked, options } = useCalendarContext();
 
   React.useEffect(() => {});
 
