@@ -172,16 +172,22 @@ const CalendarBody = () => {
               {month.days.map((day, i) => (
                 <div
                   key={i}
-                  className={`pt-0.5 h-20 text-center border-t border-base-300 font-bold ${
-                    day?.isHoliday ? "border-t-2 border-purple-600" : ""
-                  } ${i % 7 === 5 || i % 7 === 6 ? "text-base-400" : ""}`}
+                  className={`pt-0.5 h-20 text-center border-t border-base-300 font-bold dark:text-base-50 dark:border-base-800 ${
+                    day?.isHoliday
+                      ? "border-t-2 border-purple-500 dark:border-purple-500"
+                      : ""
+                  } ${
+                    i % 7 === 5 || i % 7 === 6
+                      ? "text-base-400 dark:text-base-500"
+                      : ""
+                  }`}
                 >
                   {day ? (
                     <div>
                       <div
                         className={`${
                           day?.id === isToday
-                            ? "bg-base-900 text-base-50 rounded-full w-6 m-auto"
+                            ? "bg-base-900 text-base-50 rounded-full w-6 m-auto dark:text-base-950 dark:bg-base-50"
                             : ""
                         }`}
                       >
@@ -192,8 +198,8 @@ const CalendarBody = () => {
                         id={day.id}
                         className={`${
                           rotated
-                            ? "border-[1px] border-base-300 rounded-[0.2rem]  mx-0.5 h-[1.7rem] text-center flex items-center justify-center mt-1 transition-transform duration-200 active:scale-120 active:translate-z-3"
-                            : "mx-0.5 mt-1 flex items-center justify-center h-[1.7rem]"
+                            ? "border-[1px] border-base-300 rounded-[0.2rem]  mx-0.5 h-[1.7rem] text-center flex items-center justify-center mt-1 transition-transform duration-200 active:scale-120 active:translate-z-3 dark:border-base-700"
+                            : "mx-0.5 mt-1 flex items-center justify-center h-[1.7rem] dark:border-base-700"
                         }`}
                       ></div>
                     </div>

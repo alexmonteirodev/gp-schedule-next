@@ -93,7 +93,9 @@ const PageEdit = () => {
   console.log(newDefaultOptions);
   return (
     <div className="grid m-5 gap-3">
-      <h2 className="m-auto text-base-900 font-bold text-2xl">Edit Shifts</h2>
+      <h2 className="m-auto text-base-900 font-bold text-2xl dark:text-base-50">
+        Edit Shifts
+      </h2>
       <FormNewShift
         shiftProps={{
           newShiftLabel,

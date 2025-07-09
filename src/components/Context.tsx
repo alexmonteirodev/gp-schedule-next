@@ -24,6 +24,8 @@ type CalendarContextType = {
   setDeleted: React.Dispatch<React.SetStateAction<boolean>>;
   newShiftAdded: number;
   setNewShiftAdded: React.Dispatch<React.SetStateAction<number>>;
+  dark: boolean | null;
+  setDark: React.Dispatch<React.SetStateAction<boolean | null>>;
 };
 
 const CalendarContext = React.createContext<CalendarContextType | null>(null);
@@ -62,6 +64,26 @@ export const CalendarProvider = ({ children }: { children: ReactNode }) => {
   const [totals, setTotals] = React.useState<number[] | null>(null);
   const [deleted, setDeleted] = React.useState(false);
   const [newShiftAdded, setNewShiftAdded] = React.useState(0);
+  const [dark, setDark] = React.useState<boolean>(false);
+
+  //0. carrega darkmode no localstorage e aplica tema
+  React.useEffect(() => {
+    const isDark = localStorage.getItem("darkMode");
+    if (isDark !== null) {
+      setDark(JSON.parse(isDark));
+    } else {
+      setDark(false);
+    }
+  }, [setDark]);
+
+  React.useEffect(() => {
+    const root = document.documentElement;
+    if (dark) {
+      root.classList.add("dark");
+    } else {
+      root.classList.remove("dark");
+    }
+  }, [dark]);
 
   // 1. Carrega os dados do localStorage
   React.useEffect(() => {
@@ -157,6 +179,8 @@ export const CalendarProvider = ({ children }: { children: ReactNode }) => {
         setDeleted,
         newShiftAdded,
         setNewShiftAdded,
+        dark,
+        setDark,
       }}
     >
       {children}

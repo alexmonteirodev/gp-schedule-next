@@ -14,7 +14,7 @@ const Options = () => {
   return (
     <div className="flex justify-between items-center gap-5 ">
       <div
-        className={`flex-1 overflow-x-scroll snap-x snap-mandatory scrollbar-hide hide-scrollbar pointer-events-auto bg-base-100 py-3 rounded-md pl-4 pr-1`}
+        className={`flex-1 overflow-x-scroll snap-x snap-mandatory scrollbar-hide hide-scrollbar pointer-events-auto bg-base-100 dark:bg-base-700 py-3 rounded-md pl-4 pr-1`}
         // ${newShiftAdded === 0 ? "" : "pl-10"}
       >
         <div className="flex gap-4 w-max">
@@ -27,8 +27,10 @@ const Options = () => {
                 style={{ backgroundColor: option.color }}
               ></div>
               <p
-                className={`font-normal text-base-500 ${
-                  checked === option.id ? " text-blue-400" : ""
+                className={`font-normal text-base-500 dark:text-base-50 ${
+                  checked === option.id
+                    ? " text-blue-400 dark:text-blue-400"
+                    : ""
                 }`}
               >
                 {option.id}
@@ -39,12 +41,14 @@ const Options = () => {
       </div>
       <div
         onTouchStart={() => router.push("/edit-shift")}
-        className="flex flex-col items-center justify-center border-l-2 border-base-300 px-3 pointer-events-auto shrink-0"
+        className="flex flex-col items-center justify-center border-l-2 border-base-300 dark:border-base-700 px-3 pointer-events-auto shrink-0"
       >
         <div>
           <Image className={`m-auto h-5 w-5`} src={addSvg} alt="settings.svg" />
         </div>
-        <p className="font-normal text-base-500">New Shift</p>
+        <p className="font-normal text-base-500 dark:text-base-400">
+          New Shift
+        </p>
       </div>
     </div>
   );

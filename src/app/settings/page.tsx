@@ -7,7 +7,9 @@ const Settings = () => {
   const router = useRouter();
   return (
     <div className="flex flex-col justify-center bete m-5 gap-3">
-      <h2 className="m-auto text-base-900 font-bold text-2xl">Settings</h2>
+      <h2 className="m-auto text-base-900 font-bold text-2xl dark:text-base-50">
+        Settings
+      </h2>
       <DarkMode />
       <button
         className="bg-blue-500 text-base-50 rounded-md flex-1 py-1 active:bg-blue-600"

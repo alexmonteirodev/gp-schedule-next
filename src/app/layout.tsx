@@ -27,10 +27,10 @@ export default function RootLayout({
     <html lang="en">
       <CalendarProvider>
         <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased bg-base-50 `}
+          className={`${geistSans.variable} ${geistMono.variable} antialiased bg-base-50 dark:bg-base-900 `}
         >
           {children}
-          <div className="fixed bottom-0 w-full h-30 bg-gradient-to-t from-white/90 to-transparent pointer-events-none -z-10"></div>
+          {/* <div className="fixed bottom-0 w-full h-30 bg-gradient-to-t from-white/90 to-transparent pointer-events-none -z-10"></div> */}
         </body>
       </CalendarProvider>
     </html>

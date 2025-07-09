@@ -55,14 +55,16 @@ const DeleteShift = () => {
       ) : (
         ""
       )}
-      <h3 className="text-base-900 font-bold text-xl mb-2">Delete Shift</h3>
-      <div className="flex flex-col bg-base-200 rounded-md p-4">
+      <h3 className="text-base-900 dark:text-base-100 font-bold text-xl mb-2">
+        Delete Shift
+      </h3>
+      <div className="flex flex-col bg-base-200 dark:bg-base-800 rounded-md p-4 ">
         {/* <label htmlFor="turno">Choose a Shift</label> */}
         <select
           id="turno"
           value={selectedShiftId}
           onChange={(e) => setSelectedShiftId(e.target.value)}
-          className="bg-base-50 rounded-md border border-base-300 px-2 py-1"
+          className="bg-base-50 dark:bg-base-200 rounded-md border border-base-300 dark:border-base-950 px-2 py-1"
         >
           <option value="">Select a shift</option>
           {shiftsUserList.map((shift) => (
@@ -75,7 +77,7 @@ const DeleteShift = () => {
         <button
           onClick={handleDeleteShift}
           disabled={!selectedShiftId}
-          className="bg-red-300 text-red-700 rounded-md py-0.5 px-3 w-25 mt-3 disabled:opacity-50"
+          className="bg-red-300 text-red-700 dark:bg-red-400 dark:text-red-900 rounded-md py-0.5 px-3 w-25 mt-3 disabled:opacity-60"
         >
           Delete
         </button>
