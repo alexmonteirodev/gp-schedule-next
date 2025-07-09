@@ -82,7 +82,7 @@ const FormNewShift = ({ shiftProps }: { shiftProps: ShiftProps }) => {
           <p className="dark:text-base-50">Title</p>
           <div className="flex gap-2">
             <div
-              onTouchStart={() => setTextNewColor("var(--color-base-100)")}
+              onTouchStart={() => setTextNewColor("var(--color-base-075)")}
               className={`rounded-full bg-base-100 border-2 border-base-300 w-6 h-6 ${
                 newTextColor === "var(--color-base-100)"
                   ? "border-blue-400"
@@ -90,7 +90,7 @@ const FormNewShift = ({ shiftProps }: { shiftProps: ShiftProps }) => {
               }`}
             ></div>
             <div
-              onTouchStart={() => setTextNewColor("var(--color-base-900)")}
+              onTouchStart={() => setTextNewColor("var(--color-base-055)")}
               className={`rounded-full bg-base-900 border-2 border-base-300 w-6 h-6 ${
                 newTextColor === "var(--color-base-900)"
                   ? "border-blue-400"

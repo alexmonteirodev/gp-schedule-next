@@ -12,7 +12,7 @@ const PageEdit = () => {
   const [newShiftHourEnd, setNewShiftHourEnd] = React.useState(0);
 
   const [newTextColor, setTextNewColor] = React.useState(
-    "var(--color-base-100)"
+    "var(--color-base-055)"
   );
   const [errorForm, setErrorForm] = React.useState(false);
 

@@ -13,6 +13,8 @@
   --color-base-900: #0D1116;
   --color-base-950: #02040A; */
 @theme inline {
+  --color-base-055: rgba(0, 0, 0, 0.55);
+  --color-base-075: rgba(255, 255, 255, 0.75);
   --color-base-50: #ffffff;
   --color-base-100: #f6f8fa;
   --color-base-200: #eceeef;
