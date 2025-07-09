@@ -24,8 +24,8 @@ type CalendarContextType = {
   setDeleted: React.Dispatch<React.SetStateAction<boolean>>;
   newShiftAdded: number;
   setNewShiftAdded: React.Dispatch<React.SetStateAction<number>>;
-  dark: boolean | null;
-  setDark: React.Dispatch<React.SetStateAction<boolean | null>>;
+  dark: boolean;
+  setDark: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const CalendarContext = React.createContext<CalendarContextType | null>(null);
