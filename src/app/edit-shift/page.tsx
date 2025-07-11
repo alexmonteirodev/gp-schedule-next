@@ -24,6 +24,7 @@ const PageEdit = () => {
   }
 
   const hoursComputed = newShiftHourEnd - newShiftHourStart;
+  const hoursComputedPlusDay = newShiftHourEnd + 24 - newShiftHourStart;
 
   const newDefaultOptions = {
     id: newShiftLabel.toLocaleLowerCase(),
@@ -35,7 +36,7 @@ const PageEdit = () => {
     hours:
       Number(hoursComputed.toFixed(2)) > 0
         ? Number(hoursComputed.toFixed(2))
-        : 0,
+        : Number(hoursComputedPlusDay.toFixed(2)),
   };
 
   function handleSubmitNewOption(e: React.MouseEvent<HTMLButtonElement>) {
