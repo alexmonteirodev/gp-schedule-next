@@ -10,7 +10,7 @@ export const defaultOptions: PeriodOptionType[] = [
   {
     id: "morning",
     label: "Morning",
-    color: "#FDC800",
+    color: "#F0C10D",
     textColor: "var(--color-base-055)",
     hours: 7,
   },
@@ -24,8 +24,8 @@ export const defaultOptions: PeriodOptionType[] = [
   {
     id: "night",
     label: "Night",
-    color: "#2B7FFF",
-    textColor: "var(--color-base-055)",
+    color: "#2253BF",
+    textColor: "var(--color-base-075)",
     hours: 9,
   },
   // {
@@ -69,7 +69,7 @@ export const defaultOptions: PeriodOptionType[] = [
 // {
 //   id: "night",
 //   label: "Night",
-//   color: "#165DFB",
+//   color: "#165DFB", ou "#2B7FFF"
 //   textColor: "var(--color-base-100)",
 //   hours: 9,
 // },
